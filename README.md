@@ -4,4 +4,4 @@ The soul purpose of this repo is to aid us in learning how to use repos, version
 
 We have a wiki for the project setup currently has preproduction documents such as a Game Design Document and a Technical Design Document.  
 
-[Wiki][Wiki]
+[Wiki](https://github.com/jberg03/GSP494-Team-A/wiki)
