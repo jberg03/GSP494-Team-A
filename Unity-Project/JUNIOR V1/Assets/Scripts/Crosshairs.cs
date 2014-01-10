@@ -23,6 +23,19 @@ public class Crosshairs : MonoBehaviour {
     public string tagCheck = "";
     public bool foundHit = false;
 
+    public GameObject bullet;
+    private int timer = 0;
+    private bool canShoot = true;
+    private float speed = 500f;
+    private Vector3 moveDirection;
+    private bool bulletFoundHit;
+
+    void Awake()
+    {
+        moveDirection = transform.forward * speed;
+        bulletFoundHit = false;
+    }
+
 	// Update is called once per frame
 	void Update () 
     {
@@ -30,7 +43,7 @@ public class Crosshairs : MonoBehaviour {
         RaycastHit hitUse = new RaycastHit();
         foundHit = false;
         float shortestDist;
-        shortestDist = 20f;
+        shortestDist = 30f;
         hits = Physics.RaycastAll(transform.position, transform.forward, shortestDist);
         
         for (int i = 0; i < hits.Length; i++)
@@ -46,12 +59,30 @@ public class Crosshairs : MonoBehaviour {
         if (foundHit)
         {
             crosshair.position = hitUse.point;
-            crosshair.rotation = Quaternion.LookRotation(hitUse.normal * -90f);
+            crosshair.rotation = endPoint.rotation;
         }
         else
         {
             crosshair.position = endPoint.position;
             crosshair.rotation = endPoint.rotation;
+        }
+
+        if (!canShoot)
+        {
+            timer++;
+            if (timer >= 30)
+            {
+                timer = 0;
+                canShoot = true;
+            }
+
+        }
+
+        if (canShoot && Input.GetMouseButton(0))
+        {
+            canShoot = false;
+            Instantiate(bullet, transform.position, Quaternion.LookRotation(moveDirection * 180));
+            
         }
 	}
 }

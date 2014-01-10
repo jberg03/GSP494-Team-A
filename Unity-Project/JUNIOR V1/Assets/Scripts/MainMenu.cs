@@ -15,11 +15,11 @@ public class MainMenu : MonoBehaviour {
         {
             Application.LoadLevel("Grounds001");
         }
-        if (GUI.Button(new Rect(256 / 2 - 40, 40, 80, 30), "Credits"))
+        if (GUI.Button(new Rect(256 / 2 - 40, 80, 80, 30), "Credits"))
         {
             //add credits here
         }
-        if (GUI.Button(new Rect(256 / 2 - 40, 80, 80, 30), "Exit"))
+        if (GUI.Button(new Rect(256 / 2 - 40, 120, 80, 30), "Exit"))
         {
             Application.Quit();
         }
