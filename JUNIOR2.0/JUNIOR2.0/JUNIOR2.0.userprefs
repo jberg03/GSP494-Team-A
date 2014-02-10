@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy\EnemyInfo.cs">
+    <Files>
+      <File FileName="Assets\Scripts\FSM\AdvancedFSM\AttackState.cs" Line="21" Column="4" />
+      <File FileName="Assets\Scripts\Weapons\Weapon.cs" Line="25" Column="24" />
+      <File FileName="Assets\Scripts\Weapons\Shooter.cs" Line="24" Column="17" />
+      <File FileName="Assets\Scripts\Enemy\EnemyController.cs" Line="79" Column="40" />
+      <File FileName="Assets\Scripts\Enemy\EnemyInfo.cs" Line="19" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
