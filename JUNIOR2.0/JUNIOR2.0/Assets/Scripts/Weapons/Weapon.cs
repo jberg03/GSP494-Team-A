@@ -7,6 +7,12 @@ public class Weapon : MonoBehaviour
 {
 	protected float elapsedTime = 0.0f;
 	public GameObject bullet;
+	private AudioSource audio;
+
+	void Start()
+	{
+				audio = bullet.audio;
+	}
 
 	void Update()
 	{
@@ -22,6 +28,10 @@ public class Weapon : MonoBehaviour
 			IEnumerable<Transform> spawnPoints = this.transform.GetComponentsInChildren<Transform> ().Where (child => child.name == "BulletSpawnPoint");
 			foreach(Transform spawnPoint in spawnPoints)
 			{
+				if(audio.clip.isReadyToPlay)
+				{
+					AudioSource.PlayClipAtPoint(audio.clip, spawnPoint.position);
+				}
 				Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);
 			}
 			elapsedTime = 0.0f;
