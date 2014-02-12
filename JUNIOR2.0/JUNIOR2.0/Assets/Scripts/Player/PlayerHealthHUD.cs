@@ -26,7 +26,16 @@ public class PlayerHealthHUD : MonoBehaviour {
 
     void OnGUI(){
         guiPos.Set(10, 10, healthBarLength, 20);
+
+        if (currentHealth >= 65)
+            GUI.color = Color.green;
+        else if (currentHealth >= 35 && currentHealth < 65)
+            GUI.color = Color.yellow;
+        else
+            GUI.color = Color.red;
+
         GUI.Box(guiPos, currentHealth + "/" + maxHealth);
+        
         //GUI.DrawTexture(guiPos, texture);
     }
 

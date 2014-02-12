@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour 
 {
-	public int health = 100;
+	public int health = 10;
 	public int maxHealth = 100;
 	public float regenRate = 10.0f;
 	public int regenAmount = 1;
@@ -37,6 +37,6 @@ public class PlayerHealth : MonoBehaviour
 		{
 			health -= other.gameObject.GetComponent<Bullet>().damage;
 		}
-        //hud.AdjustCurrentHealth(health);
+        
 	}
 }
