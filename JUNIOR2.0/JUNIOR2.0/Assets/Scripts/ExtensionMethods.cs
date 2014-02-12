@@ -66,7 +66,42 @@ public static class ExtensionMethods
 		trans.rotation = Quaternion.Slerp(trans.rotation, rotateSelf, trans.GetComponent<EnemyInfo> ().GetRotationSpeed() * Time.deltaTime);
 	}
 
-	public static void MoveFoward(this Transform trans)
+	public static void MoveFoward(this Transform trans, float speed)
+	{
+		trans.Translate (Vector3.forward * speed * Time.deltaTime);
+	}
+
+	public static void MoveBack(this Transform trans, float speed)
+	{
+		trans.Translate (Vector3.back * speed * Time.deltaTime);
+	}
+
+	public static void MoveLeft(this Transform trans, float speed)
+	{
+		trans.Translate (Vector3.left * speed * Time.deltaTime);
+	}
+
+	public static void MoveRight(this Transform trans, float speed)
+	{
+		trans.Translate (Vector3.right * speed * Time.deltaTime);
+	}
+
+	public static void MoveUp(this Transform trans, float speed)
+	{
+		trans.Translate (Vector3.up * speed * Time.deltaTime);
+	}
+
+	public static void MoveDown(this Transform trans, float speed)
+	{
+		trans.Translate (Vector3.down * speed * Time.deltaTime);
+	}
+
+	public static void RotateClockwise(this Transform trans, float speed)
+	{
+		trans.RotateAround (trans.position - (Vector3.back * 20), Vector3.up, speed * Time.deltaTime);
+	}
+
+	public static void RotateCounterClockwise(this Transform trans)
 	{
 		trans.Translate (Vector3.back * trans.GetComponent<EnemyInfo> ().GetMovementSpeed() * Time.deltaTime);
 	}

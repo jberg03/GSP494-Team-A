@@ -14,7 +14,7 @@ public class FleeState : FSMState
 	public override void Act (Transform player)
 	{
 		this.transform.RotateYAway(player);
-		this.transform.MoveFoward();
+		this.transform.MoveBack(this.transform.GetComponent<PlayerInfo>().movementSpeed);
 		CheckCornered();
 	}
 

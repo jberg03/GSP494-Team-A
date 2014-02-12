@@ -15,7 +15,7 @@ public class ChaseState : FSMState
 		this.transform.RotateYToward (player);
 		if(!IsAtEdge ())
 		{
-			this.transform.MoveFoward();
+			this.transform.MoveBack(this.transform.GetComponent<EnemyInfo>().movementSpeed);
 		}
 	}
 }

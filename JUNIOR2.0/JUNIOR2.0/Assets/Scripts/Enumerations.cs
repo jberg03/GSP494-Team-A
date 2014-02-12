@@ -11,6 +11,19 @@ public enum Transition
 	LowHealth,
 }
 
+public enum PlatformDirection
+{
+	none,
+	up,
+	down,
+	left,
+	right,
+	foward,
+	backward,
+	clockwise,
+	counterClockwise,
+}
+
 public enum FSMStateId
 {
 	None = 0,

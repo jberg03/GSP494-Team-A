@@ -15,7 +15,7 @@ public class PatrolState : FSMState
 	public override void Act (Transform player)
 	{
 		this.transform.RotateYToward (startingPoint.transform);
-		this.transform.MoveFoward ();
+		this.transform.MoveBack (this.transform.GetComponent<EnemyInfo>().movementSpeed);
 		float distance = Vector3.Distance (this.transform.position, startingPoint.transform.position);
 		if(distance <= (int)Transition.ReachPlayer)
 		{
