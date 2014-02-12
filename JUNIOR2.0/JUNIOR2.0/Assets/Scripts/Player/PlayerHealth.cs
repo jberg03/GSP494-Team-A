@@ -8,11 +8,12 @@ public class PlayerHealth : MonoBehaviour
 	public float regenRate = 10.0f;
 	public int regenAmount = 1;
 	private float elapsedTime = 0.0f;
+    //private PlayerHealthHUD hud;
 
 	// Use this for initialization
 	void Start () 
 	{
-
+        //hud = GetComponent<PlayerHealthHUD>();
 	}
 	
 	// Update is called once per frame
@@ -27,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
 				health += regenAmount;
 			}
 		}
+        //hud.AdjustCurrentHealth(health);
 	}
 
 	void OnCollisionEnter(Collision other)
@@ -35,5 +37,6 @@ public class PlayerHealth : MonoBehaviour
 		{
 			health -= other.gameObject.GetComponent<Bullet>().damage;
 		}
+        //hud.AdjustCurrentHealth(health);
 	}
 }
