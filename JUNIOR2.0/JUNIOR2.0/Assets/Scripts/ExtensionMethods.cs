@@ -95,15 +95,6 @@ public static class ExtensionMethods
 	{
 		trans.Translate (Vector3.down * speed * Time.deltaTime);
 	}
-
-	public static void RotateClockwise(this Transform trans, float speed)
-	{
-		trans.RotateAround (trans.position - (Vector3.back * 20), Vector3.up, speed * Time.deltaTime);
-	}
-
-	public static void RotateCounterClockwise(this Transform trans)
-	{
-		trans.Translate (Vector3.back * trans.GetComponent<EnemyInfo> ().GetMovementSpeed() * Time.deltaTime);
-	}
+	
 }
 

@@ -18,6 +18,11 @@ public class EnemyController : AdvancedFSM
 	protected override void FSMUpdate ()
 	{
 		//status update
+		if(this.transform.GetComponent<EnemyInfo>().IsDead())
+		{
+			Destroy(Instantiate(this.transform.GetComponent<EnemyInfo>().deathEffect, this.transform.position, this.transform.rotation),3.0f);
+			Destroy (gameObject);
+		}
 	}
 
 	protected override void FSMFixedUpdate ()

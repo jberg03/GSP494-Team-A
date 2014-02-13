@@ -8,6 +8,7 @@ public class CharacterInfo : MonoBehaviour
 	public float movementSpeed = 3.0f;
 	public float rotationSpeed = 1.0f;
 	protected StatusCondition condition;
+	public float MaxHealth{get{return maxHealth;}set{ maxHealth = value; }}
 
 	void Start()
 	{

@@ -3,10 +3,10 @@ using System.Collections;
 
 public class PlayerHealthHUD : MonoBehaviour {
 
-    public int maxHealth = 100;
-    private int currentHealth = 0;
+    protected float maxHealth = 100;
+	protected float currentHealth = 0;
 
-    PlayerHealth playerHealth;
+    protected PlayerInfo playerHealth;
 
     public float healthBarLength;
 
@@ -16,7 +16,8 @@ public class PlayerHealthHUD : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         healthBarLength = Screen.width / 2;
-        playerHealth = GetComponent<PlayerHealth>();
+        playerHealth = this.transform.GetComponent<PlayerInfo>();
+		maxHealth = playerHealth.MaxHealth;
 	}
 	
 	// Update is called once per frame
@@ -26,6 +27,7 @@ public class PlayerHealthHUD : MonoBehaviour {
 
     void OnGUI(){
         guiPos.Set(10, 10, healthBarLength, 20);
+		GUI.backgroundColor = Color.gray;
 
         if (currentHealth >= 65)
             GUI.color = Color.green;
@@ -39,7 +41,7 @@ public class PlayerHealthHUD : MonoBehaviour {
         //GUI.DrawTexture(guiPos, texture);
     }
 
-    public void AdjustCurrentHealth(int adj){
+    public void AdjustCurrentHealth(float adj){
         currentHealth = adj;
 
         if (currentHealth < 0)
