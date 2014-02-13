@@ -20,7 +20,7 @@ public class EnemyController : AdvancedFSM
 		//status update
 		if(this.transform.GetComponent<EnemyInfo>().IsDead())
 		{
-			Destroy(Instantiate(this.transform.GetComponent<EnemyInfo>().deathEffect, this.transform.position, this.transform.rotation),3.0f);
+			Destroy(Instantiate(this.transform.GetComponent<EnemyInfo>().deathEffect, this.transform.position, this.transform.rotation),7.0f);
 			Destroy (gameObject);
 		}
 	}

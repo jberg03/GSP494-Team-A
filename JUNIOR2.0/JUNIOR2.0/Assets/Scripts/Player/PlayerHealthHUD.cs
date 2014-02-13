@@ -18,6 +18,7 @@ public class PlayerHealthHUD : MonoBehaviour {
         healthBarLength = Screen.width / 2;
         playerHealth = this.transform.GetComponent<PlayerInfo>();
 		maxHealth = playerHealth.MaxHealth;
+		currentHealth = playerHealth.health;
 	}
 	
 	// Update is called once per frame
@@ -27,14 +28,13 @@ public class PlayerHealthHUD : MonoBehaviour {
 
     void OnGUI(){
         guiPos.Set(10, 10, healthBarLength, 20);
-		GUI.backgroundColor = Color.gray;
 
-        if (currentHealth >= 65)
+        if (playerHealth.GetPercentHealth() >= 65.0f)
             GUI.color = Color.green;
-        else if (currentHealth >= 35 && currentHealth < 65)
-            GUI.color = Color.yellow;
-        else
+		else if (playerHealth.GetPercentHealth() > 35.0f)
             GUI.color = Color.red;
+        else
+            GUI.color = Color.yellow;
 
         GUI.Box(guiPos, currentHealth + "/" + maxHealth);
         
