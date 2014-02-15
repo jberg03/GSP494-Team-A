@@ -5,14 +5,41 @@ public class platformMove : MonoBehaviour {
 
 	public float distance = 15.0f;
 	public PlatformDirection direction;
-	protected Vector3 startPosition;
+	public PlatformRotation rotation;
+	public Vector3 startPosition;
 	public float speed = 3.0f;
-	protected float traveledDistance;
+	public float traveledDistance;
 
 	void Start () 
 	{
-		startPosition = transform.position;
-		Debug.Log(startPosition);
+		startPosition = this.transform.position;
+		
+		if(rotation != PlatformRotation.none)
+		{
+
+			switch(direction)
+			{
+			case PlatformDirection.up:
+				startPosition += Vector3.up * distance;
+				break;
+			case PlatformDirection.down:
+				startPosition += Vector3.down * distance;
+				break;
+			case PlatformDirection.left:
+				startPosition += Vector3.left * distance;
+				break;
+			case PlatformDirection.right:
+				startPosition += Vector3.right * distance;
+				break;
+			case PlatformDirection.backward:
+				startPosition += Vector3.back * distance;
+				break;
+			case PlatformDirection.foward:
+				startPosition += Vector3.forward * distance;
+				break;
+			}
+		}
+
 	
 	}
 	
@@ -20,23 +47,35 @@ public class platformMove : MonoBehaviour {
 	void FixedUpdate () 
 	{
 		traveledDistance = Vector3.Distance (this.startPosition, this.transform.position);
-		switch(direction)
+		if(rotation == PlatformRotation.none)
 		{
-		case PlatformDirection.up:
-		case PlatformDirection.down:
-			MoveUpDown();
-			break;
-		case PlatformDirection.left:
-		case PlatformDirection.right:
-			MoveLeftRight();
-			break;
-		case PlatformDirection.foward:
-		case PlatformDirection.backward:
-			MoveForwardBackward();
-			break;
-		case PlatformDirection.clockwise:
-			RotateClockwise();
-			break;
+			switch(direction)
+			{
+			case PlatformDirection.up:
+			case PlatformDirection.down:
+				MoveUpDown();
+				break;
+			case PlatformDirection.left:
+			case PlatformDirection.right:
+				MoveLeftRight();
+				break;
+			case PlatformDirection.foward:
+			case PlatformDirection.backward:
+				MoveForwardBackward();
+				break;
+			}
+		}
+		else
+		{
+			switch(rotation)
+			{
+			case PlatformRotation.clockwise:
+				RotateClockwise();
+				break;
+			case PlatformRotation.counterClockwise:
+				RotateCounterClockwise();
+				break;
+			}
 		}
 	}
 
@@ -129,6 +168,47 @@ public class platformMove : MonoBehaviour {
 
 	protected void RotateClockwise()
 	{
-		this.transform.RotateAround (this.transform.position - (Vector3.back * distance), Vector3.up, speed * Time.deltaTime);
+		//this.transform.RotateAround (this.transform.position - (Vector3.back * distance), Vector3.up, speed * Time.deltaTime);
+		//this.transform.RotateYToward (startPosition, speed);
+		switch(direction)
+		{
+		case PlatformDirection.up:
+		case PlatformDirection.down:
+			this.transform.RotateAround(startPosition, Vector3.forward, speed * Time.deltaTime);
+			break;
+		case PlatformDirection.left:
+		case PlatformDirection.right:
+			this.transform.RotateAround(startPosition, Vector3.up, speed * Time.deltaTime);
+			break;
+		case PlatformDirection.backward:
+		case PlatformDirection.foward:
+			this.transform.RotateAround(startPosition, Vector3.left, speed * Time.deltaTime);
+			break;
+
+		}
+
+	}
+
+	protected void RotateCounterClockwise()
+	{
+		//this.transform.RotateAround (this.transform.position - (Vector3.back * distance), Vector3.up, speed * Time.deltaTime);
+		//this.transform.RotateYToward (startPosition, speed);
+		switch(direction)
+		{
+		case PlatformDirection.up:
+		case PlatformDirection.down:
+			this.transform.RotateAround(startPosition, Vector3.forward, (-1.0f) * speed * Time.deltaTime);
+			break;
+		case PlatformDirection.left:
+		case PlatformDirection.right:
+			this.transform.RotateAround(startPosition, Vector3.up, (-1.0f) * speed * Time.deltaTime);
+			break;
+		case PlatformDirection.backward:
+		case PlatformDirection.foward:
+			this.transform.RotateAround(startPosition, Vector3.left, (-1.0f) * speed * Time.deltaTime);
+			break;
+			
+		}
+		
 	}
 }
