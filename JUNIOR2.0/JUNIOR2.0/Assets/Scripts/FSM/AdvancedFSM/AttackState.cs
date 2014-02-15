@@ -9,13 +9,24 @@ public class AttackState : FSMState
 	public override void Construct ()
 	{
 		this.stateId = FSMStateId.Attack;
-		this.DetermineBoundries ();
+		if(this.transform.GetComponent<EnemyInfo>().platform != null)
+		{
+			this.DetermineBoundries ();
+		}
+	}
+
+	void Update()
+	{
+		if(this.transform.GetComponent<EnemyInfo>().platform != null)
+		{
+			this.DetermineBoundries ();
+		}
 	}
 
 	public override void Act (Transform player)
 	{
 		//rotate the enemy towards they player
-		this.transform.RotateYToward (player);
+		this.transform.RotateYToward (player, this.GetComponent<EnemyInfo>().rotationSpeed);
 
 		foreach(Transform weapon in this.transform.GetComponentsInChildren<Transform>().Where(t => t.name == "BulletSpawnPoint"))
 		{

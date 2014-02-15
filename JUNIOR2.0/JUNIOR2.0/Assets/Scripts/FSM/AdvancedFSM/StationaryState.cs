@@ -7,7 +7,18 @@ public class StationaryState : FSMState
 	public override void Construct ()
 	{
 		this.stateId = FSMStateId.Stationary;
-		this.DetermineBoundries ();
+		if(this.transform.GetComponent<EnemyInfo>().platform != null)
+		{
+			this.DetermineBoundries ();
+		}
+	}
+
+	void Update()
+	{
+		if(this.transform.GetComponent<EnemyInfo>().platform != null)
+		{
+			this.DetermineBoundries ();
+		}
 	}
 
 	public override void Act (Transform player)

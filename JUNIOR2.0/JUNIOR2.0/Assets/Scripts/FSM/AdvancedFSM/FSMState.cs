@@ -96,10 +96,12 @@ public abstract class FSMState : MonoBehaviour
 		float distance = Vector3.Distance (this.transform.position, player.position);
 		Transition temp = Transition.None;
 		EnemyInfo self = this.transform.GetComponent<EnemyInfo> ();
-
+		bool deathState = map.ContainsKey (Transition.NoHealth);
+		bool isDead = self.IsDead ();
 		//check health
 		if(self.IsDead() && (map.ContainsKey(Transition.NoHealth) || requiredTransition == Transition.NoHealth))
 		{
+			Debug.Log("Enemy is dead");
 			temp = Transition.NoHealth;
 		}
 		else if(self.IsLowHealth() && (map.ContainsKey(Transition.LowHealth) || requiredTransition == Transition.LowHealth))
@@ -120,7 +122,8 @@ public abstract class FSMState : MonoBehaviour
 		}
 		else
 		{
-			temp = Transition.None;
+			temp = Transition.confused;
+			//temp = this.requiredTransition;
 		}
 		
 		//change states if the state is in the map
@@ -143,6 +146,7 @@ public abstract class FSMState : MonoBehaviour
 
 	protected bool IsAtEdge()
 	{
+
 		Heading myDirection = this.transform.GetDirection ();
 		float travelDistance = this.transform.GetComponent<EnemyInfo>().movementSpeed * Time.deltaTime;
 		float x = transform.position.x;

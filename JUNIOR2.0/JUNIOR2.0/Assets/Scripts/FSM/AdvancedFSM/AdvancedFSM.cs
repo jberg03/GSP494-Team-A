@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class AdvancedFSM : FSM
 {
 	protected List<FSMState> fsmStates;
-	protected FSMStateId currentStateId;
+	public FSMStateId currentStateId;
 	public FSMStateId CurrentStateId
 	{
 		get{return currentStateId;}

@@ -7,12 +7,23 @@ public class ChaseState : FSMState
 	public override void Construct()
 	{
 		this.stateId = FSMStateId.Chase;
-		this.DetermineBoundries ();
+		if(this.transform.GetComponent<EnemyInfo>().platform != null)
+		{
+			this.DetermineBoundries ();
+		}
+	}
+
+	void Update()
+	{
+		if(this.transform.GetComponent<EnemyInfo>().platform != null)
+		{
+			this.DetermineBoundries ();
+		}
 	}
 
 	public override void Act (Transform player)
 	{
-		this.transform.RotateYToward (player);
+		this.transform.RotateYToward (player, this.GetComponent<EnemyInfo>().rotationSpeed);
 		if(!IsAtEdge ())
 		{
 			this.transform.MoveBack(this.transform.GetComponent<EnemyInfo>().movementSpeed);

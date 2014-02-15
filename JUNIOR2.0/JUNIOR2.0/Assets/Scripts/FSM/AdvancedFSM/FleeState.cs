@@ -8,12 +8,23 @@ public class FleeState : FSMState
 	public override void Construct ()
 	{
 		this.stateId = FSMStateId.Flee;
-		this.DetermineBoundries ();
+		if(this.transform.GetComponent<EnemyInfo>().platform != null)
+		{
+			this.DetermineBoundries ();
+		}
+	}
+
+	void Update()
+	{
+		if(this.transform.GetComponent<EnemyInfo>().platform != null)
+		{
+			this.DetermineBoundries ();
+		}
 	}
 
 	public override void Act (Transform player)
 	{
-		this.transform.RotateYAway(player);
+		this.transform.RotateYAway(player, this.GetComponent<EnemyInfo>().rotationSpeed);
 		this.transform.MoveBack(this.transform.GetComponent<PlayerInfo>().movementSpeed);
 		CheckCornered();
 	}
