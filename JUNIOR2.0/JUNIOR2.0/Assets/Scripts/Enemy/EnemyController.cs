@@ -9,20 +9,11 @@ public class EnemyController : AdvancedFSM
 	{
 		playerTransform = GameObject.FindGameObjectWithTag ("Player").transform;
 		ConstructFSM ();
-		if(currentState != null)
-		{
-			currentState.CheckState (playerTransform);
-		}
 	}
 
 	protected override void FSMUpdate ()
 	{
-		//status update
-		if(this.transform.GetComponent<EnemyInfo>().IsDead())
-		{
-			Destroy(Instantiate(this.transform.GetComponent<EnemyInfo>().deathEffect, this.transform.position, this.transform.rotation),7.0f);
-			Destroy (gameObject);
-		}
+
 	}
 
 	protected override void FSMFixedUpdate ()
@@ -42,6 +33,9 @@ public class EnemyController : AdvancedFSM
 
 	private void ConstructFSM()
 	{
+		this.gameObject.AddComponent ("StationaryState");
+		StationaryState stationaryState = this.GetComponent<StationaryState> ();
+		stationaryState.requiredTransition = Transition.confused;
 		foreach(FSMState state in this.transform.GetComponents<FSMState>())
 		{
 			state.Construct();
@@ -53,6 +47,8 @@ public class EnemyController : AdvancedFSM
 			currentState = state;
 			currentStateId = state.ID;
 		}
+		currentState.CheckState (playerTransform);
+
 	}
 
 	public void RemoveState(FSMState item)
@@ -76,6 +72,10 @@ public class EnemyController : AdvancedFSM
 
 			this.transform.GetComponent<EnemyInfo>().DealDamage(other.gameObject.transform.GetComponent<Bullet>().damage);
 			this.transform.GetComponent<EnemyInfo>().ApplyStatus(other.gameObject.transform.GetComponent<Bullet>().GetCondition());
+		}
+		if(other.gameObject.tag.ToLower() == "platform"  && this.transform.GetComponent<EnemyInfo>().platform != other.gameObject)
+		{
+			this.transform.GetComponent<EnemyInfo>().platform = other.gameObject;
 		}
 	}
 
