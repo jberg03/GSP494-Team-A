@@ -4,6 +4,7 @@ using System.Collections;
 public enum Transition
 {
 	None,
+	confused,
 	SawPlayer,
 	ReachPlayer,
 	LostPlayer,
@@ -20,6 +21,11 @@ public enum PlatformDirection
 	right,
 	foward,
 	backward,
+}
+
+public enum PlatformRotation
+{
+	none,
 	clockwise,
 	counterClockwise,
 }
