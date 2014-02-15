@@ -40,30 +40,30 @@ public static class ExtensionMethods
 		}
 	}
 
-	public static void RotateYToward(this Transform trans, Transform other)
+	public static void RotateYToward(this Transform trans, Transform other, float speed)
 	{
 		Quaternion rotateSelf = Quaternion.LookRotation (trans.position - other.position);
-		trans.rotation = Quaternion.Slerp(trans.rotation, rotateSelf, trans.GetComponent<EnemyInfo> ().rotationSpeed * Time.deltaTime);
+		trans.rotation = Quaternion.Slerp(trans.rotation, rotateSelf, speed * Time.deltaTime);
 		trans.rotation = new Quaternion (0, trans.rotation.y, 0, trans.rotation.w);
 	}
 
-	public static void RotateYAway(this Transform trans, Transform other)
+	public static void RotateYAway(this Transform trans, Transform other, float speed)
 	{
 		Quaternion rotateSelf = Quaternion.LookRotation (other.position - trans.position);
-		trans.rotation = Quaternion.Slerp(trans.rotation, rotateSelf, trans.GetComponent<EnemyInfo> ().rotationSpeed * Time.deltaTime);
+		trans.rotation = Quaternion.Slerp(trans.rotation, rotateSelf, speed * Time.deltaTime);
 		trans.rotation = new Quaternion (0, trans.rotation.y, 0, trans.rotation.w);
 	}
 
-	public static void RotateToward(this Transform trans, Transform other)
+	public static void RotateToward(this Transform trans, Transform other, float speed)
 	{
 		Quaternion rotateSelf = Quaternion.LookRotation (trans.position - other.position);
-		trans.rotation = Quaternion.Slerp(trans.rotation, rotateSelf, trans.GetComponent<EnemyInfo> ().rotationSpeed * Time.deltaTime);
+		trans.rotation = Quaternion.Slerp(trans.rotation, rotateSelf, speed * Time.deltaTime);
 	}
 	
-	public static void RotateAway(this Transform trans, Transform other)
+	public static void RotateAway(this Transform trans, Transform other, float speed)
 	{
 		Quaternion rotateSelf = Quaternion.LookRotation (other.position - trans.position);
-		trans.rotation = Quaternion.Slerp(trans.rotation, rotateSelf, trans.GetComponent<EnemyInfo> ().GetRotationSpeed() * Time.deltaTime);
+		trans.rotation = Quaternion.Slerp(trans.rotation, rotateSelf, speed * Time.deltaTime);
 	}
 
 	public static void MoveFoward(this Transform trans, float speed)
