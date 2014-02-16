@@ -23,13 +23,6 @@ public class Bullet : MonoBehaviour {
 	{
 		transform.position += transform.forward * Speed * Time.deltaTime;       
 	}
-	
-	void OnCollisionEnter(Collision other)
-	{
-		//ContactPoint contact = collision.contacts[0];
-		//Instantiate(Explosion, contact.point, Quaternion.identity);
-		Destroy(gameObject);
-	}
 
 	public StatusCondition GetCondition()
 	{

@@ -41,17 +41,32 @@ public class PlayerHealthHUD : MonoBehaviour {
         //GUI.DrawTexture(guiPos, texture);
     }
 
-    public void AdjustCurrentHealth(float adj){
+    public void AdjustCurrentHealth(float adj)
+	{
         currentHealth = adj;
 
         if (currentHealth < 0)
+		{
             currentHealth = 0;
+			//need to do something to end the player
+		}
         if (currentHealth > maxHealth)
+		{
             currentHealth = maxHealth;
-
+		}
         if (maxHealth < 1)
+		{
             maxHealth = 1;
-
+		}
         healthBarLength = (Screen.width / 2) * (currentHealth / (float)maxHealth);
     }
+
+	void OnTriggerEnter(Collider other)
+	{
+		if(other.gameObject.tag.ToLower() == "bullet")
+		{
+			this.playerHealth.health -= other.GetComponent<Bullet>().damage;
+			Destroy(other.gameObject);
+		}
+	}
 }

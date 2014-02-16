@@ -28,7 +28,7 @@ public class DeadState : FSMState
 	{
 		//status update
 		Debug.Log ("Enemy is about to explode");
-		AudioSource.PlayClipAtPoint (sound, this.transform.position);
+		//AudioSource.PlayClipAtPoint (sound, this.transform.position);
 		Destroy(Instantiate(this.effect, this.transform.position, this.transform.rotation),7.0f);
 		Destroy (gameObject);
 

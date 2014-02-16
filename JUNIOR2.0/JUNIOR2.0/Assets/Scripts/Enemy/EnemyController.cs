@@ -72,10 +72,22 @@ public class EnemyController : AdvancedFSM
 
 			this.transform.GetComponent<EnemyInfo>().DealDamage(other.gameObject.transform.GetComponent<Bullet>().damage);
 			this.transform.GetComponent<EnemyInfo>().ApplyStatus(other.gameObject.transform.GetComponent<Bullet>().GetCondition());
+			Destroy (other.gameObject);
 		}
 		if(other.gameObject.tag.ToLower() == "platform"  && this.transform.GetComponent<EnemyInfo>().platform != other.gameObject)
 		{
 			this.transform.GetComponent<EnemyInfo>().platform = other.gameObject;
+		}
+	}
+
+	protected void OnTriggerEnter(Collider other)
+	{
+		if(other.gameObject.tag.ToLower() == "bullet")
+		{
+			
+			this.transform.GetComponent<EnemyInfo>().DealDamage(other.gameObject.transform.GetComponent<Bullet>().damage);
+			this.transform.GetComponent<EnemyInfo>().ApplyStatus(other.gameObject.transform.GetComponent<Bullet>().GetCondition());
+			Destroy(other.gameObject);
 		}
 	}
 
