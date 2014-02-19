@@ -85,6 +85,7 @@
      <Compile Include="Assets\Scripts\FSM\AdvancedFSM\StationaryState.cs" />
      <Compile Include="Assets\Scripts\FSM\FSM.cs" />
      <Compile Include="Assets\Scripts\FSM\SimpleFSM.cs" />
+     <Compile Include="Assets\Scripts\GameOver.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealthHUD.cs" />
