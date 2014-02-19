@@ -97,7 +97,7 @@ public class EnemyController : AdvancedFSM
 		foreach(Weapon weapon in weapons)
 		{
 			//weapon.transform.RotateToward(playerTransform);
-			weapon.Fire();
+			weapon.Fire(playerTransform);
 		}
 	}
 }

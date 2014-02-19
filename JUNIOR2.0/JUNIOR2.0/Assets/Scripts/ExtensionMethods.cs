@@ -43,8 +43,11 @@ public static class ExtensionMethods
 	public static void RotateYToward(this Transform trans, Transform other, float speed)
 	{
 		Quaternion rotateSelf = Quaternion.LookRotation (trans.position - other.position);
-		trans.rotation = Quaternion.Slerp(trans.rotation, rotateSelf, speed * Time.deltaTime);
-		trans.rotation = new Quaternion (0, trans.rotation.y, 0, trans.rotation.w);
+		if(Quaternion.Angle(trans.rotation, rotateSelf) > 7.0f)
+		{
+			trans.rotation = Quaternion.Slerp(trans.rotation, rotateSelf, speed * Time.deltaTime);
+			trans.rotation = new Quaternion (0, trans.rotation.y, 0, trans.rotation.w);
+		}
 	}
 
 	public static void RotateYAway(this Transform trans, Transform other, float speed)
@@ -57,7 +60,7 @@ public static class ExtensionMethods
 	public static void RotateToward(this Transform trans, Transform other, float speed)
 	{
 		Quaternion rotateSelf = Quaternion.LookRotation (trans.position - other.position);
-		trans.rotation = Quaternion.Slerp(trans.rotation, rotateSelf, speed * Time.deltaTime);
+		trans.localRotation = Quaternion.RotateTowards(trans.localRotation, rotateSelf, speed * Time.deltaTime);
 	}
 	
 	public static void RotateAway(this Transform trans, Transform other, float speed)
@@ -95,6 +98,8 @@ public static class ExtensionMethods
 	{
 		trans.Translate (Vector3.down * speed * Time.deltaTime);
 	}
+
+
 	
 }
 

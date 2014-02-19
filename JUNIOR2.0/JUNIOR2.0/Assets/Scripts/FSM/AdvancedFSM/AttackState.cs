@@ -26,7 +26,7 @@ public class AttackState : FSMState
 	public override void Act (Transform player)
 	{
 		//rotate the enemy towards they player
-		this.transform.RotateYToward (player, this.GetComponent<EnemyInfo>().rotationSpeed);
+		this.transform.RotateToward (player, this.GetComponent<EnemyInfo>().rotationSpeed);
 
 		foreach(Transform weapon in this.transform.GetComponentsInChildren<Transform>().Where(t => t.name == "BulletSpawnPoint"))
 		{

@@ -13,8 +13,9 @@ public class EnemyShoot : MonoBehaviour
 		foreach (Weapon weapon in weapons)
 		{
 			//aim weapons
-			weapon.transform.RotateToward(target,weapon.transform.parent.GetComponent<EnemyInfo>().rotationSpeed);
-			weapon.Fire();
+			//weapon.transform.RotateToward(target,weapon.transform.parent.GetComponent<EnemyInfo>().rotationSpeed);
+			//weapon.transform.LookAt(target);
+			weapon.Fire(target);
 			//shoot weapons
 		}
 
