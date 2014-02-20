@@ -48,7 +48,7 @@ public class PlayerHealthHUD : MonoBehaviour {
         if (currentHealth < 0)
 		{
             currentHealth = 0;
-			//need to do something to end the player
+            Application.LoadLevel("GameOver");
 		}
         if (currentHealth > maxHealth)
 		{
@@ -69,4 +69,16 @@ public class PlayerHealthHUD : MonoBehaviour {
 			Destroy(other.gameObject);
 		}
 	}
+
+    void Die()
+    {
+        MonoBehaviour p;
+        Component[] coms = GetComponentsInChildren<MonoBehaviour>();
+        foreach (Component b in coms)
+        {
+            p = b as MonoBehaviour;
+            if (p)
+                p.enabled = false;
+        }
+    }
 }
