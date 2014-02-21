@@ -3,8 +3,6 @@ using System.Collections;
 
 public class DeadState : FSMState
 {
-
-	public AudioClip sound;
 	public GameObject effect;
 
 	public override void Construct ()
