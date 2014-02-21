@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Waypoint : MonoBehaviour
 {
-	public GameObject nextPoint;
+	public int waypointNum;
+
+
+	 
 }
 

@@ -30,6 +30,13 @@ public enum PlatformRotation
 	counterClockwise,
 }
 
+public enum UpgradeId
+{
+	HealthRegen,
+	EnergyRegen,
+	ammo,
+}
+
 public enum FSMStateId
 {
 	None = 0,
