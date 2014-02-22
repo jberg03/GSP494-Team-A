@@ -32,9 +32,9 @@ public class PlayerHealthHUD : MonoBehaviour {
         if (playerHealth.GetPercentHealth() >= 65.0f)
             GUI.color = Color.green;
 		else if (playerHealth.GetPercentHealth() > 35.0f)
-            GUI.color = Color.red;
-        else
             GUI.color = Color.yellow;
+        else
+            GUI.color = Color.red;
 
         GUI.Box(guiPos, currentHealth + "/" + maxHealth);
         

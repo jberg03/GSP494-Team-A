@@ -17,12 +17,13 @@ public class Shooter : MonoBehaviour {
 		//transform.Translate(h , v, 0);
 
 		if (Input.GetButtonUp ("Fire1"))
-		{
+		{ 
 			Weapon[] weapons = this.GetComponentsInChildren<Weapon>();
 			foreach(Weapon weapon in weapons)
 			{
 				weapon.Fire();
 			}
+                       
 		}
 	
 	}

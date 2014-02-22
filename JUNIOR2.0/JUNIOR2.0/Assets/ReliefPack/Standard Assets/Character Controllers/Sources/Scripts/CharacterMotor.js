@@ -428,7 +428,7 @@ private function ApplyGravityAndJumping (velocity : Vector3) {
 			jumping.lastStartTime = Time.time;
 			jumping.lastButtonDownTime = -100;
 			jumping.holdingJumpButton = true;
-			
+
 			// Calculate the jumping direction
 			if (TooSteep())
 				jumping.jumpDir = Vector3.Slerp(Vector3.up, groundNormal, jumping.steepPerpAmount);

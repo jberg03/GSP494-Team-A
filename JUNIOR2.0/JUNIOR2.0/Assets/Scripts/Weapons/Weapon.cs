@@ -8,10 +8,12 @@ public class Weapon : MonoBehaviour
 	protected float elapsedTime = 0.0f;
 	public GameObject bullet;
 	private AudioSource audio;
+    protected PlayerInfo player;
 
 	void Start()
 	{
-				audio = bullet.audio;
+        player = GetComponent<PlayerInfo>();
+		audio = bullet.audio;
 	}
 
 	void Update()
@@ -48,6 +50,9 @@ public class Weapon : MonoBehaviour
 		//shoot from the spawn points
 		if(elapsedTime > bullet.GetComponent<Bullet>().shootRate)
 		{
+            //lose some energy everytime the player shoots
+            player.loseEnergy(3.0f);
+
 			IEnumerable<Transform> spawnPoints = this.transform.GetComponentsInChildren<Transform> ().Where (child => child.name == "BulletSpawnPoint");
 			foreach(Transform spawnPoint in spawnPoints)
 			{
