@@ -53,7 +53,12 @@ public class CharacterInfo : MonoBehaviour
 		}
 		return false;
 	}
-	
+
+	public void GainHealth(float heal)
+	{
+		health += heal;
+	}
+
 	public void ApplyStatus(StatusCondition statCondition)
 	{
 		if(statCondition != null)

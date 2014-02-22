@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//OBSOLETE: Replaced with PlayerInfo
+
 public class PlayerHealth : MonoBehaviour 
 {
 	public int health = 10;

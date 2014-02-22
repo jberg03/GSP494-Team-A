@@ -32,9 +32,10 @@ public enum PlatformRotation
 
 public enum UpgradeId
 {
-	HealthRegen,
-	EnergyRegen,
-	ammo,
+	HealthRegen = 3,
+	EnergyRegen = 2,
+	Ammo = 1,
+	None = 0,
 }
 
 public enum FSMStateId

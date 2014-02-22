@@ -37,5 +37,19 @@ public class PlayerInfo : CharacterInfo
 
         return false;
     }
+	protected BaseUpgrade upgrade;
+
+	void FixedUpdate()
+	{
+		if(upgrade != null)
+		{
+			upgrade.Act(this.gameObject);
+			if(upgrade.IsComplete())
+			{
+				upgrade = null;
+			}
+		}
+
+	}
 }
 
