@@ -10,6 +10,7 @@ public class DeadState : FSMState
 	public override void Construct ()
 	{
 		this.stateId = FSMStateId.Dead;
+		lootTable = GameObject.Find ("LootTable");
 		if(this.transform.GetComponent<EnemyInfo>().platform != null)
 		{
 			this.DetermineBoundries ();
@@ -31,6 +32,7 @@ public class DeadState : FSMState
 		//AudioSource.PlayClipAtPoint (sound, this.transform.position);
 		Destroy(Instantiate(this.effect, this.transform.position, this.transform.rotation),7.0f);
 		player.GetComponentInChildren<PlayerInfo> ().GainEnergy (energyRestore);
+		lootTable.GetComponent<LootTable> ().dropLoot (this.transform);
 		Destroy (gameObject);
 
 	}
