@@ -5,6 +5,8 @@ public class MainMenu : MonoBehaviour {
 
     void OnGUI()
     {
+        Screen.showCursor = true;
+
         if (GUI.Button(new Rect(Screen.width / 2 - 75, 160, 150, 75), "PLAY"))
             Application.LoadLevel("Level01");
         

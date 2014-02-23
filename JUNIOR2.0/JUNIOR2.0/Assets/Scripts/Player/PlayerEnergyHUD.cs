@@ -4,9 +4,11 @@ using System.Collections;
 public class PlayerEnergyHUD : MonoBehaviour
 {
 
-    protected float maxEnergy = 100;
-    protected float currentEnergy = 0;
-    protected PlayerInfo playerEnergy;
+    private float maxEnergy = 100;
+    private float currentEnergy = 0;
+    private PlayerInfo playerEnergy;
+
+    public GameObject gameObject;
 
     public float energyBarLength;
 
@@ -24,8 +26,7 @@ public class PlayerEnergyHUD : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {        
         AdjustCurrentEnergy(playerEnergy.energy);
         Jumping();
         Moving();
@@ -55,6 +56,7 @@ public class PlayerEnergyHUD : MonoBehaviour
         if (currentEnergy < 0)
         {
             currentEnergy = 0;
+            Transform.Destroy(gameObject);
         }
         if (currentEnergy > maxEnergy)
         {

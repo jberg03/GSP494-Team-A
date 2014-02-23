@@ -11,6 +11,8 @@ public class GameOver : MonoBehaviour {
 
     void OnGUI()
     {
+        Screen.showCursor = true;
+
         GUI.Box(new Rect(Screen.width / 2 - 300, 30, 600, Screen.height - 60), gameOverTexture, GUIStyle.none);
 
         if (GUI.Button(new Rect(Screen.width / 2 - 75, 300, 150, 75), "REPLAY"))
