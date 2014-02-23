@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\Enemy\EnemyShoot.cs" />
      <Compile Include="Assets\Scripts\Enumerations.cs" />
      <Compile Include="Assets\Scripts\Environment\EffectScript.cs" />
+     <Compile Include="Assets\Scripts\Environment\LootTable.cs" />
      <Compile Include="Assets\Scripts\Environment\Waypoint.cs" />
      <Compile Include="Assets\Scripts\Environment\Waypoints.cs" />
      <Compile Include="Assets\Scripts\Environment\platformMove.cs" />
@@ -95,6 +96,8 @@
      <Compile Include="Assets\Scripts\Player\PlayerHealthHUD.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerInfo.cs" />
      <Compile Include="Assets\Scripts\Player\Upgrades\BaseUpgrade.cs" />
+     <Compile Include="Assets\Scripts\Player\Upgrades\EnergyRegenUpgrade.cs" />
+     <Compile Include="Assets\Scripts\Player\Upgrades\HealthRegenUpgrade.cs" />
      <Compile Include="Assets\Scripts\Status Conditions\StatusCondition.cs" />
      <Compile Include="Assets\Scripts\Weapons\Bullet.cs" />
      <Compile Include="Assets\Scripts\Weapons\Shooter.cs" />

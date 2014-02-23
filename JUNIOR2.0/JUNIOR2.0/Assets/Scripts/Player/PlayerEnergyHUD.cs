@@ -8,8 +8,6 @@ public class PlayerEnergyHUD : MonoBehaviour
     private float currentEnergy = 0;
     private PlayerInfo playerEnergy;
 
-    public GameObject gameObject;
-
     public float energyBarLength;
 
     public Rect guiPos;
@@ -56,7 +54,6 @@ public class PlayerEnergyHUD : MonoBehaviour
         if (currentEnergy < 0)
         {
             currentEnergy = 0;
-            Transform.Destroy(gameObject);
         }
         if (currentEnergy > maxEnergy)
         {
