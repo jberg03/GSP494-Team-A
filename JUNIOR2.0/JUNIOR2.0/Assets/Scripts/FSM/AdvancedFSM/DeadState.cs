@@ -4,6 +4,8 @@ using System.Collections;
 public class DeadState : FSMState
 {
 	public GameObject effect;
+	public GameObject lootTable;
+	public float energyRestore = 5.0f;
 
 	public override void Construct ()
 	{
@@ -28,6 +30,7 @@ public class DeadState : FSMState
 		Debug.Log ("Enemy is about to explode");
 		//AudioSource.PlayClipAtPoint (sound, this.transform.position);
 		Destroy(Instantiate(this.effect, this.transform.position, this.transform.rotation),7.0f);
+		player.GetComponentInChildren<PlayerInfo> ().GainEnergy (energyRestore);
 		Destroy (gameObject);
 
 	}

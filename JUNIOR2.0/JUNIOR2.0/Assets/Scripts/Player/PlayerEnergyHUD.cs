@@ -69,19 +69,22 @@ public class PlayerEnergyHUD : MonoBehaviour
 
     public void Jumping()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !playerEnergy.isOutOfEnergy())
             playerEnergy.loseEnergy(1.0f);
     }
 
     public void Moving()
     {
-        if (Input.GetKey(KeyCode.W))
-            playerEnergy.loseEnergy(0.1f * Time.deltaTime);
-        if (Input.GetKey(KeyCode.A))
-            playerEnergy.loseEnergy(0.1f * Time.deltaTime);
-        if (Input.GetKey(KeyCode.S))
-            playerEnergy.loseEnergy(0.1f * Time.deltaTime);
-        if (Input.GetKey(KeyCode.D))
-            playerEnergy.loseEnergy(0.1f * Time.deltaTime);
+		if(!playerEnergy.isOutOfEnergy())
+		{
+	        if (Input.GetKey(KeyCode.W))
+	            playerEnergy.loseEnergy(0.1f * Time.deltaTime);
+	        if (Input.GetKey(KeyCode.A))
+	            playerEnergy.loseEnergy(0.1f * Time.deltaTime);
+	        if (Input.GetKey(KeyCode.S))
+	            playerEnergy.loseEnergy(0.1f * Time.deltaTime);
+	        if (Input.GetKey(KeyCode.D))
+	            playerEnergy.loseEnergy(0.1f * Time.deltaTime);
+		}
     }
 }

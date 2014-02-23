@@ -6,7 +6,7 @@ public class CharacterInfo : MonoBehaviour
 	public float health = 30;
 	protected float maxHealth;
 	public float movementSpeed = 3.0f;
-	public float rotationSpeed = 1.0f;
+	public float rotationSpeed = 30.0f;
 	protected StatusCondition condition;
 	public float MaxHealth{get{if(maxHealth == 0){maxHealth = health;} return maxHealth;}}
 

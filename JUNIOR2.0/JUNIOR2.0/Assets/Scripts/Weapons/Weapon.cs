@@ -27,6 +27,17 @@ public class Weapon : MonoBehaviour
 		//shoot from the spawn points
 		if(elapsedTime > bullet.GetComponent<Bullet>().shootRate)
 		{
+			float minRotateY = this.transform.eulerAngles.y - 45.0f;
+			if(minRotateY < 0)
+			{
+				minRotateY = 360 + minRotateY;
+			}
+			float maxRotateY = this.transform.eulerAngles.y + 45.0f;
+			if(maxRotateY > 359)
+			{
+				maxRotateY = (-1) + (maxRotateY - 359);
+			}
+
 			IEnumerable<Transform> spawnPoints = this.transform.GetComponentsInChildren<Transform> ().Where (child => child.name == "BulletSpawnPoint");
 			foreach(Transform spawnPoint in spawnPoints)
 			{
@@ -34,13 +45,18 @@ public class Weapon : MonoBehaviour
 				//spawnPoint.RotateToward(target, this.transform.parent.GetComponent<CharacterInfo>().rotationSpeed);
 				spawnPoint.LookAt(target);
 				//spawnPoint.SmoothLookAt(target, this.transform.parent.GetComponent<CharacterInfo>().rotationSpeed);
-				if(audio.clip.isReadyToPlay)
+				float angle = spawnPoint.rotation.eulerAngles.y;
+				if(angle < maxRotateY && angle > minRotateY)
 				{
-					AudioSource.PlayClipAtPoint(audio.clip, spawnPoint.position);
+					if(audio.clip.isReadyToPlay)
+					{
+						AudioSource.PlayClipAtPoint(audio.clip, spawnPoint.position);
+					}
+					Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);
+					elapsedTime = 0.0f;
 				}
-				Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);
 			}
-			elapsedTime = 0.0f;
+
 		}
 	}
 
@@ -58,14 +74,17 @@ public class Weapon : MonoBehaviour
 			{
 				//rotate toward the player
 				//spawnPoint.RotateToward(target, this.transform.parent.GetComponent<CharacterInfo>().rotationSpeed);
-
-				if(audio.clip.isReadyToPlay)
+				if(!player.isOutOfEnergy())
 				{
-					AudioSource.PlayClipAtPoint(audio.clip, spawnPoint.position);
+					if(audio.clip.isReadyToPlay)
+					{
+						AudioSource.PlayClipAtPoint(audio.clip, spawnPoint.position);
+					}
+					Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);
+					elapsedTime = 0.0f;
 				}
-				Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);
 			}
-			elapsedTime = 0.0f;
+
 		}
 	}
 

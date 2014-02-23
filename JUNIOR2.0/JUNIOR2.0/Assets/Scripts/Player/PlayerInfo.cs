@@ -30,6 +30,15 @@ public class PlayerInfo : CharacterInfo
         energy -= amount;
     }
 
+	public void GainEnergy(float amount)
+	{
+		energy += amount;
+		if(energy > maxEnergy)
+		{
+			energy = maxEnergy;
+		}
+	}
+
     public bool isOutOfEnergy()
     {
         if (energy <= 0)
