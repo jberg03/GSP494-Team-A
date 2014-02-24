@@ -108,6 +108,10 @@ public abstract class FSMState : MonoBehaviour
 		{
 			temp = Transition.LowHealth;
 		}
+		else if(self.isHit && (map.ContainsKey(Transition.BeenHit) || requiredTransition == Transition.BeenHit))
+		{
+			temp = Transition.BeenHit;
+		}
 		else if(distance <= self.reachTarget && (map.ContainsKey(Transition.ReachPlayer) || requiredTransition == Transition.ReachPlayer))
 		{
 			temp = Transition.ReachPlayer;

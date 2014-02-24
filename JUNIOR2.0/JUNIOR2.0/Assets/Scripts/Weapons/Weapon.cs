@@ -27,15 +27,19 @@ public class Weapon : MonoBehaviour
 		//shoot from the spawn points
 		if(elapsedTime > bullet.GetComponent<Bullet>().shootRate)
 		{
+			bool flipMin = false;
 			float minRotateY = this.transform.eulerAngles.y - 45.0f;
 			if(minRotateY < 0)
 			{
 				minRotateY = 360 + minRotateY;
+				flipMin = true;
 			}
+			bool flipMax = false;
 			float maxRotateY = this.transform.eulerAngles.y + 45.0f;
 			if(maxRotateY > 359)
 			{
 				maxRotateY = (-1) + (maxRotateY - 359);
+				flipMax = true;
 			}
 
 			IEnumerable<Transform> spawnPoints = this.transform.GetComponentsInChildren<Transform> ().Where (child => child.name == "BulletSpawnPoint");
@@ -46,7 +50,7 @@ public class Weapon : MonoBehaviour
 				spawnPoint.LookAt(target);
 				//spawnPoint.SmoothLookAt(target, this.transform.parent.GetComponent<CharacterInfo>().rotationSpeed);
 				float angle = spawnPoint.rotation.eulerAngles.y;
-				if(angle < maxRotateY && angle > minRotateY)
+				if((angle < maxRotateY || flipMin) && (angle > minRotateY || flipMax))
 				{
 					if(audio.clip.isReadyToPlay)
 					{

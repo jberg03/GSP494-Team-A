@@ -12,11 +12,6 @@ public abstract class BaseUpgrade : MonoBehaviour
 		get{return id;}
 	}
 
-	void Update()
-	{
-		lifeTime += Time.deltaTime;
-	}
-
 	public abstract void Act(GameObject target);
 
 	public bool IsComplete()

@@ -63,12 +63,14 @@ public class PlayerHealthHUD : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
+		string tag = other.gameObject.tag.ToLower ();
 		if(other.gameObject.tag.ToLower() == "bullet")
 		{
 			this.playerHealth.health -= other.GetComponent<Bullet>().damage;
 			Destroy(other.gameObject);
 		}
 	}
+	
 
     void Die()
     {

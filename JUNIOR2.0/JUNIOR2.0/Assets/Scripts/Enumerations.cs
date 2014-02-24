@@ -10,6 +10,7 @@ public enum Transition
 	LostPlayer,
 	NoHealth,
 	LowHealth,
+	BeenHit,
 }
 
 public enum PlatformDirection
@@ -35,7 +36,7 @@ public enum UpgradeId
 	HealthRegen = 0,
 	EnergyRegen = 1,
 	None = 2,
-	//Ammo = 2,
+	Ammo = 3,
 }
 
 public enum FSMStateId
@@ -44,6 +45,7 @@ public enum FSMStateId
 	Patrol,
 	Chase,
 	Attack,
+	Hit,
 	Stationary,
 	Flee,
 	Dead,

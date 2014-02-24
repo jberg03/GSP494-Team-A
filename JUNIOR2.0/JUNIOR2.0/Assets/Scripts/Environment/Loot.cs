@@ -22,8 +22,24 @@ public class Loot : MonoBehaviour
 		case UpgradeId.HealthRegen:
 			ps.startColor = Color.red;
 			break;
-		}
-		
+		case UpgradeId.Ammo:
+			ps.startColor = Color.green;
+			break;
+		}		
 	}
+
+	protected void OnTriggerEnter(Collider other)
+	{
+		string tag = other.gameObject.tag;
+		Debug.Log (tag);
+		if(tag == "Player")
+		{
+			other.gameObject.GetComponentInChildren<PlayerInfo>().AddUpgrade(lootEffect);
+			Destroy(this.gameObject);
+		}
+	}
+
+
 }
+
 

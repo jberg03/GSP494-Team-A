@@ -12,17 +12,16 @@ public class EnergyRegenUpgrade : BaseUpgrade
 		id = UpgradeId.EnergyRegen;
 	}
 
-	// Update is called once per frame
-	void Update ()
-	{
-		elapsedTime += Time.deltaTime;
-	}
+
 
 	public override void Act (GameObject target)
 	{
-		if(target.tag.ToLower().Equals("player"))
+		lifeTime += Time.deltaTime;
+		elapsedTime += Time.deltaTime;
+		if(elapsedTime >= energyRate)
 		{
-
+			target.GetComponent<PlayerInfo>().GainEnergy(energyAmount);
+			elapsedTime = 0.0f;
 		}
 	}
 }

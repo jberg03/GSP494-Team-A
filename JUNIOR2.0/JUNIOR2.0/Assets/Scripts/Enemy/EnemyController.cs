@@ -36,6 +36,9 @@ public class EnemyController : AdvancedFSM
 		this.gameObject.AddComponent ("StationaryState");
 		StationaryState stationaryState = this.GetComponent<StationaryState> ();
 		stationaryState.requiredTransition = Transition.confused;
+		this.gameObject.AddComponent ("HitState");
+		HitState hitState = this.GetComponent<HitState> ();
+		hitState.requiredTransition = Transition.BeenHit;
 		foreach(FSMState state in this.transform.GetComponents<FSMState>())
 		{
 			state.Construct();
@@ -87,6 +90,7 @@ public class EnemyController : AdvancedFSM
 			
 			this.transform.GetComponent<EnemyInfo>().DealDamage(other.gameObject.transform.GetComponent<Bullet>().damage);
 			this.transform.GetComponent<EnemyInfo>().ApplyStatus(other.gameObject.transform.GetComponent<Bullet>().GetCondition());
+			this.transform.GetComponent<EnemyInfo>().isHit = true;
 			Destroy(other.gameObject);
 		}
 	}

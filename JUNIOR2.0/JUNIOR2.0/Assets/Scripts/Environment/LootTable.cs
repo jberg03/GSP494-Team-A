@@ -11,7 +11,7 @@ public class LootTable : MonoBehaviour
 	public BaseUpgrade GetLoot()
 	{
 		int enumSize = Enum.GetValues(typeof(UpgradeId)).Length;
-		int rndLootIndex = UnityEngine.Random.Range (0, enumSize - 1);
+		int rndLootIndex = UnityEngine.Random.Range (0, enumSize);
 		UpgradeId loot = (UpgradeId)rndLootIndex;
 		IList<BaseUpgrade> upgrades = this.GetComponents<BaseUpgrade> ().Where (upgrade => upgrade.Id == loot).ToList();
 		int rndUpgradeIndex = UnityEngine.Random.Range (0, upgrades.Count - 1);

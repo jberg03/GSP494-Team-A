@@ -3,8 +3,8 @@ using System.Collections;
 
 public class HealthRegenUpgrade : BaseUpgrade
 {
-	public float regenAmount = 3.0f;
-	public float regenRate = 0.5f;
+	public float regenAmount = 1.0f;
+	public float regenRate = 3f;
 	private float elapsedTime = 0.0f;
 
 
@@ -12,21 +12,15 @@ public class HealthRegenUpgrade : BaseUpgrade
 	{
 		id = UpgradeId.HealthRegen;
 	}
-
-	void Update()
-	{
-		elapsedTime += Time.deltaTime;
-	}
-
+	
 	public override void Act (GameObject target)
 	{
-		if(target.tag.ToLower().Equals("player"))
+		lifeTime += Time.deltaTime;
+		elapsedTime += Time.deltaTime;
+		if(elapsedTime >= regenRate)
 		{
-			if(elapsedTime >= regenRate)
-			{
-				target.GetComponent<PlayerInfo>().GainHealth(regenAmount);
-				elapsedTime = 0.0f;
-			}
+			target.GetComponent<PlayerInfo>().GainHealth(regenAmount);
+			elapsedTime = 0.0f;
 		}
 	}
 }

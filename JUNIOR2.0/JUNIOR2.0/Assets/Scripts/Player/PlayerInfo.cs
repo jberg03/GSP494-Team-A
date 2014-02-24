@@ -1,15 +1,20 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class PlayerInfo : CharacterInfo
 {
 	public float energy = 30;
 	protected float maxEnergy;
     public float MaxEnergy { get { if (maxEnergy == 0) { maxEnergy = energy; } return maxEnergy; } }
+	protected IList<BaseUpgrade> upgrades;
+	public BaseUpgrade[] upgradeList;
 
     void Start()
     {
         maxEnergy = energy;
+		upgrades = new List<BaseUpgrade> ();
     }
 
     public bool isLowEnergy()
@@ -46,19 +51,47 @@ public class PlayerInfo : CharacterInfo
 
         return false;
     }
-	protected BaseUpgrade upgrade;
+
+	public void AddUpgrade(BaseUpgrade loot)
+	{
+		if(!upgrades.Contains(loot))
+		{
+			upgrades.Add (loot);
+		}
+	}
+
+	public void RemoveUpgrade(BaseUpgrade loot)
+	{
+		if(upgrades.Contains(loot))
+		{
+			upgrades.Remove(loot);
+		}
+	}
 
 	void FixedUpdate()
 	{
-		if(upgrade != null)
+		if(upgrades != null && upgrades.Count > 0)
 		{
-			upgrade.Act(this.gameObject);
-			if(upgrade.IsComplete())
+			IList<BaseUpgrade> removeList = new List<BaseUpgrade>();
+			foreach(BaseUpgrade upgrade in upgrades)
 			{
-				upgrade = null;
+				upgrade.Act(this.gameObject);
+				if(upgrade.IsComplete())
+				{
+					removeList.Add(upgrade);
+				}
+			}
+			foreach(BaseUpgrade upgrade in removeList)
+			{
+				upgrades.Remove(upgrade);
 			}
 		}
 
+	}
+
+	void Update()
+	{
+		upgradeList = upgrades.ToArray ();
 	}
 }
 
